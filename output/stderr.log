@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/i/New bot for the other filling web/task.py", line 47, in <module>
+    robot_cali()
+  File "/Users/i/New bot for the other filling web/task.py", line 42, in robot_cali
+    raise
+RuntimeError: No active exception to reraise
