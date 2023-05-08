@@ -14,4 +14,5 @@ dependencies:
       # Define pip packages here -> https://pypi.org/
       - rpaframework==17.4.0    # https://rpaframework.org/releasenotes.html
       - twocaptcha==0.0.1
+      - supabase
       

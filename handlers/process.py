@@ -1,9 +1,6 @@
 from RPA.Browser.Selenium import Selenium
 from utility import handler_process_utils
-from service import zoho_service
-from service import captcha
-from service import variable_coder
-from service import handler_process_service
+from service import handler_process_service, supabase, captcha, variable_coder, zoho_service
 from time import sleep
 import os
 
@@ -62,7 +59,7 @@ def step_two(ldname):
         handler_process_utils.raise_error(e)
     pass
 
-def step_three(persona, idld, ldname, document_type, NombreTitular, TipodeDocumentoTitular, NoDocumentoTitular, FechaDeResoluciónSancionatoria, NoComparendoDelCaso, NoResoluciónSancionatoria, FechaDeComparendo, NombreRepresentateLegal, TipodeDocumentoRepresentateLegal, DocumentoRepresentateLegal, NombreEmpresa, NoDeNit):
+def step_three(persona, idld, ldname, document_type, NombreTitular, TipodeDocumentoTitular, NoDocumentoTitular, FechaDeResoluciónSancionatoria, NoComparendoDelCaso, NoResoluciónSancionatoria, FechaDeComparendo, NombreRepresentateLegal, TipodeDocumentoRepresentateLegal, DocumentoRepresentateLegal):
     if idld != "" and ldname != "":
         try:
             browser.select_from_list_by_value("//select[@id='tipo-solicitud']", "Peticion-2")
@@ -81,18 +78,20 @@ def step_three(persona, idld, ldname, document_type, NombreTitular, TipodeDocume
             # sleep(3)
             browser.click_button("//button[@id='paso-3-btn-enviar']")
         except Exception as e:
-            handler_process_utils.handle_error(e)
+            handler_process_utils.raise_error(e)
 
-def update_records_on_zoho(idld):
+def update_records_on_zoho(idld, ld_name):
     if idld != "":
         browser.wait_until_element_is_visible("//*[@id='radicado']", timeout=200)
         try: 
             radicado_number = browser.get_text("//*[@id='radicado']")
+            handler_process_utils.log_message(f"The Radicado for {idld} is {radicado_number}")
             browser.screenshot("//*[@id='respuesta']/div", "EVIDENCIA_" + radicado_number + ".png")
             zoho_service.update_records(idld, radicado_number)
             sleep(5)
             api_result = zoho_service.upload_an_attachment(idld, radicado_number)
             browser.close_browser()
+            supabase.insert_filled_ld(idld, radicado_number, ld_name)
             return api_result
         except Exception as e:
-            handler_process_utils.handle_error(e)
+            handler_process_utils.raise_error(e)

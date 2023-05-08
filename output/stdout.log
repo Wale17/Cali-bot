@@ -1,9 +1,6 @@
-HTTP Status Code : 200
-HTTP Status Code : 200
-ERROR:  ROBOT FAILED
-ERROR:  Message: Cannot locate option with value: Peticion-2
-
-ERROR:  ROBOT FAILED
-ERROR:  Message: Cannot locate option with value: Peticion-2
-
-ERROR:  ROBOT FAILED
+Robort starts
+[{'idld': '3246310000423416699'}]
+ERROR:  ROBOT FAILED because: This LD has been filed
+Robort starts
+[{'idld': '3246310000423416699'}]
+ERROR:  ROBOT FAILED because: This LD has been filed

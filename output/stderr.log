@@ -1,6 +1,4 @@
-Traceback (most recent call last):
-  File "/Users/i/New bot for the other filling web/task.py", line 47, in <module>
-    robot_cali()
-  File "/Users/i/New bot for the other filling web/task.py", line 42, in robot_cali
-    raise
-RuntimeError: No active exception to reraise
+2023-05-04 12:52:59,265:INFO - Resolving input path: /Users/i/Cali-bot/devdata/work-items-in/trial/work-items.json
+2023-05-04 12:52:59,266:INFO - Robort starts
+2023-05-04 12:53:00,327:INFO - Robort starts
+2023-05-04 12:53:00,993:ERROR - Releasing item '0' with FAILED state and exception: {'type': 'BUSINESS', 'code': None, 'message': None}
